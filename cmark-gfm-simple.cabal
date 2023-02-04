@@ -1,0 +1,34 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           cmark-gfm-simple
+version:        0.1.0
+category:       Text
+homepage:       https://github.com/brandonchinn178/cmark-gfm-simple#readme
+bug-reports:    https://github.com/brandonchinn178/cmark-gfm-simple/issues
+author:         Brandon Chinn <brandonchinn178@gmail.com>
+maintainer:     Brandon Chinn <brandonchinn178@gmail.com>
+license:        BSD3
+license-file:   LICENSE.md
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/brandonchinn178/cmark-gfm-simple
+
+library
+  exposed-modules:
+      CMarkGFM.Simple
+  other-modules:
+      Paths_cmark_gfm_simple
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wnoncanonical-monad-instances -Wno-unused-packages
+  build-depends:
+      base <5
+    , cmark-gfm
+    , text
+  default-language: Haskell2010
