@@ -1,4 +1,12 @@
 resolver: lts-20.9
 
+extra-deps:
+  - github: brandonchinn178/ghc-syntax-highlighter-themed
+    commit: 8cf22afcbb91352c98347b576dd5b4b958cad121
+
+flags:
+  cmark-gfm-simple:
+    ghc-syntax-highlighter: true
+
 ghc-options:
   '$locals': -Werror

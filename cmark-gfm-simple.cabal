@@ -21,6 +21,11 @@ source-repository head
   type: git
   location: https://github.com/brandonchinn178/cmark-gfm-simple
 
+flag ghc-syntax-highlighter
+  description: Add ghc-syntax-highlighter support
+  manual: True
+  default: False
+
 library
   exposed-modules:
       CMarkGFM.Simple
@@ -34,6 +39,11 @@ library
     , cmark-gfm
     , text
   default-language: Haskell2010
+  if flag(ghc-syntax-highlighter)
+    exposed-modules:
+        CMarkGFM.Simple.GhcSyntaxHighlighter
+    build-depends:
+        ghc-syntax-highlighter-themed
 
 test-suite cmark-gfm-simple-tests
   type: exitcode-stdio-1.0

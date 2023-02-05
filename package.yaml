@@ -18,8 +18,20 @@ ghc-options:
   - -Wnoncanonical-monad-instances
   - -Wno-unused-packages
 
+flags:
+  ghc-syntax-highlighter:
+    description: Add ghc-syntax-highlighter support
+    default: false
+    manual: true
+
 library:
   source-dirs: src
+  when:
+    - condition: flag(ghc-syntax-highlighter)
+      exposed-modules:
+        - CMarkGFM.Simple.GhcSyntaxHighlighter
+      dependencies:
+        - ghc-syntax-highlighter-themed
   dependencies:
     - base < 5
     - cmark-gfm

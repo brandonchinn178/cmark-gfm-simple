@@ -3,7 +3,18 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    name: ghc-syntax-highlighter-themed
+    pantry-tree:
+      sha256: 53648fb75f96a1fa72f86a3b109c448981a5c1438e69aadac482c86b0ff7e9c9
+      size: 1412
+    sha256: 3aa5389376110e6489482c9a08c2f73adcc75a0febfa17f5db195b374a315e3d
+    size: 7997
+    url: https://github.com/brandonchinn178/ghc-syntax-highlighter-themed/archive/8cf22afcbb91352c98347b576dd5b4b958cad121.tar.gz
+    version: 0.1.0
+  original:
+    url: https://github.com/brandonchinn178/ghc-syntax-highlighter-themed/archive/8cf22afcbb91352c98347b576dd5b4b958cad121.tar.gz
 snapshots:
 - completed:
     sha256: c11fcbeb1aa12761044755b1109d16952ede2cb6147ebde777dd5cb38f784501
