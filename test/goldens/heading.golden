@@ -1,0 +1,32 @@
+================= Input =================
+# My title
+
+content
+
+========= cmark-gfm-simple HTML =========
+<h1>My title</h1>
+<p>content</p>
+
+
+============ cmark-gfm HTML =============
+<h1>My title</h1>
+<p>content</p>
+
+
+======= cmark-gfm-simple Markdown =======
+# My title
+
+content
+
+
+========== cmark-gfm Markdown ===========
+# My title
+
+content
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 7}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 10}), unPos = NodeHeading 1 (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 3, endLine = 1, endColumn = 10}), unPos = NodeText "My title"}]})},WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 7}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 7}), unPos = NodeText "content"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 7})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 10})) (HEADING 1) [Node (Just (PosInfo {startLine = 1, startColumn = 3, endLine = 1, endColumn = 10})) (TEXT "My title") []],Node (Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 7})) PARAGRAPH [Node (Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 7})) (TEXT "content") []]]

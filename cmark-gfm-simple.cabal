@@ -14,6 +14,8 @@ maintainer:     Brandon Chinn <brandonchinn178@gmail.com>
 license:        BSD3
 license-file:   LICENSE.md
 build-type:     Simple
+extra-source-files:
+    README.md
 
 source-repository head
   type: git
@@ -30,5 +32,27 @@ library
   build-depends:
       base <5
     , cmark-gfm
+    , text
+  default-language: Haskell2010
+
+test-suite cmark-gfm-simple-tests
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      CMarkGFM.SimpleTest
+      Paths_cmark_gfm_simple
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wnoncanonical-monad-instances -Wno-unused-packages -F -pgmF=tasty-autocollect
+  build-tool-depends:
+      tasty-autocollect:tasty-autocollect
+  build-depends:
+      base
+    , cmark-gfm
+    , cmark-gfm-simple
+    , tasty
+    , tasty-autocollect
+    , tasty-golden
+    , tasty-hunit
     , text
   default-language: Haskell2010

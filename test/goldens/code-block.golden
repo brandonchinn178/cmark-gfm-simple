@@ -1,0 +1,31 @@
+================= Input =================
+```hs
+main = putStrLn "Hello world!"
+```
+
+========= cmark-gfm-simple HTML =========
+<pre><code class='language-hs'>main = putStrLn &quot;Hello world!&quot;
+</code></pre>
+
+============ cmark-gfm HTML =============
+<pre><code class="language-hs">main = putStrLn &quot;Hello world!&quot;
+</code></pre>
+
+
+======= cmark-gfm-simple Markdown =======
+``` hs
+main = putStrLn "Hello world!"
+```
+
+
+========== cmark-gfm Markdown ===========
+``` hs
+main = putStrLn "Hello world!"
+```
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3}), unPos = NodeCodeBlock "hs" "main = putStrLn \"Hello world!\"\n"}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3})) (CODE_BLOCK "hs" "main = putStrLn \"Hello world!\"\n") []]

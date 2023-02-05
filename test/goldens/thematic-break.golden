@@ -1,0 +1,40 @@
+================= Input =================
+a
+
+---
+
+b
+
+========= cmark-gfm-simple HTML =========
+<p>a</p>
+<hr />
+<p>b</p>
+
+
+============ cmark-gfm HTML =============
+<p>a</p>
+<hr />
+<p>b</p>
+
+
+======= cmark-gfm-simple Markdown =======
+a
+
+-----
+
+b
+
+
+========== cmark-gfm Markdown ===========
+a
+
+-----
+
+b
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 5, endColumn = 1}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 1}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 1}), unPos = NodeText "a"}]})},WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 1, endLine = 4, endColumn = 0}), unPos = NodeThematicBreak},WithPos {getPosInfo = Just (PosInfo {startLine = 5, startColumn = 1, endLine = 5, endColumn = 1}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 5, startColumn = 1, endLine = 5, endColumn = 1}), unPos = NodeText "b"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 5, endColumn = 1})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 1})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 1})) (TEXT "a") []],Node (Just (PosInfo {startLine = 3, startColumn = 1, endLine = 4, endColumn = 0})) THEMATIC_BREAK [],Node (Just (PosInfo {startLine = 5, startColumn = 1, endLine = 5, endColumn = 1})) PARAGRAPH [Node (Just (PosInfo {startLine = 5, startColumn = 1, endLine = 5, endColumn = 1})) (TEXT "b") []]]

@@ -1,0 +1,24 @@
+================= Input =================
+Some <mark>highlighted</mark> content
+
+========= cmark-gfm-simple HTML =========
+<p>Some <mark>highlighted</mark> content</p>
+
+
+============ cmark-gfm HTML =============
+<p>Some <!-- raw HTML omitted -->highlighted<!-- raw HTML omitted --> content</p>
+
+
+======= cmark-gfm-simple Markdown =======
+Some <mark>highlighted</mark> content
+
+
+========== cmark-gfm Markdown ===========
+Some <mark>highlighted</mark> content
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 37}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 37}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5}), unPos = NodeText "Some "},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 11}), unPos = NodeHtmlInline "<mark>"},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 12, endLine = 1, endColumn = 22}), unPos = NodeText "highlighted"},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 23, endLine = 1, endColumn = 29}), unPos = NodeHtmlInline "</mark>"},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 30, endLine = 1, endColumn = 37}), unPos = NodeText " content"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 37})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 37})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5})) (TEXT "Some ") [],Node (Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 11})) (HTML_INLINE "<mark>") [],Node (Just (PosInfo {startLine = 1, startColumn = 12, endLine = 1, endColumn = 22})) (TEXT "highlighted") [],Node (Just (PosInfo {startLine = 1, startColumn = 23, endLine = 1, endColumn = 29})) (HTML_INLINE "</mark>") [],Node (Just (PosInfo {startLine = 1, startColumn = 30, endLine = 1, endColumn = 37})) (TEXT " content") []]]

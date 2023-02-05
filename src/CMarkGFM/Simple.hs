@@ -70,7 +70,7 @@ data Node nodes
   | NodeEmph nodes
   | NodeStrong nodes
   | NodeLink Text Text nodes
-  | NodeImage Text Text nodes
+  | NodeImage Text Text Text
   | NodeStrikethrough nodes
   | NodeTable [TableCellAlignment] (WithPos [WithPos nodes]) [WithPos [WithPos nodes]]
   | NodeFootnoteReference nodes
@@ -130,7 +130,7 @@ overNodes f = f goNode . unNodes
       NodeEmph nodes -> NodeEmph (go nodes)
       NodeStrong nodes -> NodeStrong (go nodes)
       NodeLink url title nodes -> NodeLink url title (go nodes)
-      NodeImage url title nodes -> NodeImage url title (go nodes)
+      NodeImage url title alt -> NodeImage url title alt
       NodeStrikethrough nodes -> NodeStrikethrough (go nodes)
       NodeTable alignments headNodes rowNodes -> NodeTable alignments (fmap (fmap2 go) headNodes) (fmap2 (fmap2 go) rowNodes)
       NodeFootnoteReference nodes -> NodeFootnoteReference (go nodes)
@@ -183,33 +183,47 @@ renderHtml = foldNodes (Text.concat . map (nodeToHtml . unPos)) . unPos
 
 nodeToHtml :: Node Text -> Text
 nodeToHtml = \case
-  NodeThematicBreak -> "<hr />"
-  NodeParagraph inner -> tagged "p" inner
-  NodeBlockQuote inner -> tagged "blockquote" inner
+  NodeThematicBreak -> "<hr />\n"
+  NodeParagraph inner -> tagBlock "p" inner
+  NodeBlockQuote inner -> tagBlock "blockquote" inner
   NodeHtmlBlock t -> t
-  NodeCodeBlock lang t -> tagged "pre" . tagged' "code" [("class", "language-" <> lang)] $ t
-  NodeHeading level inner -> tagged ("h" <> Text.pack (show level)) inner
+  NodeCodeBlock lang t ->
+    let style = [("class", "language-" <> lang) | not (Text.null lang)]
+     in tagInline "pre" . tagInline' "code" style $ escape t
+  NodeHeading level inner -> tagBlock ("h" <> Text.pack (show level)) inner
   NodeList ListAttributes{..} inner ->
     let container =
           case listType of
             BULLET_LIST -> "ul"
             ORDERED_LIST -> "ol"
-     in tagged container . Text.concat . map (tagged "li" . unPos) $ inner
+     in tagBlock container . Text.unlines . map (tagInline "li" . unPos) $ inner
   NodeText t -> escape t
   NodeSoftBreak -> "\n"
-  NodeLineBreak -> "<br />"
+  NodeLineBreak -> "<br />\n"
   NodeHtmlInline t -> t
-  NodeCode t -> tagged "code" t
-  NodeEmph inner -> tagged "em" inner
-  NodeStrong inner -> tagged "strong" inner
-  NodeLink url title inner -> tagged' "a" [("href", url), ("title", title)] inner
-  NodeImage url title inner -> tagged' "img" [("src", url), ("alt", title)] inner
-  NodeStrikethrough inner -> tagged "del" inner
+  NodeCode t -> tagInline "code" (escape t)
+  NodeEmph inner -> tagInline "em" inner
+  NodeStrong inner -> tagInline "strong" inner
+  NodeLink url title inner ->
+    let attrs =
+          concat
+            [ [("href", url)]
+            , [("title", title) | not (Text.null title)]
+            ]
+     in tagInline' "a" attrs inner
+  NodeImage url title alt ->
+    let attrs =
+          concat
+            [ [("src", url), ("alt", alt)]
+            , [("title", title) | not (Text.null title)]
+            ]
+     in "<img " <> showAttrs attrs <> " />"
+  NodeStrikethrough inner -> tagInline "del" inner
   NodeTable alignments headNodes rowNodes ->
     let mkCells tag row =
           Text.unlines $
             zipWith
-              (\alignment cell -> tagged' tag (mkStyle alignment) (unPos cell))
+              (\alignment cell -> tagInline' tag (mkStyle alignment) (unPos cell))
               alignments
               (unPos row)
         mkStyle = \case
@@ -217,18 +231,24 @@ nodeToHtml = \case
           LeftAligned -> [("style", "text-align: left;")]
           CenterAligned -> [("style", "text-align: center;")]
           RightAligned -> [("style", "text-align: right;")]
-     in tagged "table" . Text.unlines . map (tagged "tr") $ mkCells "th" headNodes : map (mkCells "td") rowNodes
+     in tagBlock "table" . Text.unlines . map (tagBlock "tr") $ mkCells "th" headNodes : map (mkCells "td") rowNodes
   -- https://github.com/kivikakk/cmark-gfm-hs/issues/28
   NodeFootnoteReference _ -> error "Cannot render footnotes"
   NodeFootnoteDefinition _ -> error "Cannot render footnotes"
   where
-    tagged tag = tagged' tag []
-    tagged' tag attrs t =
+    tagInline tag = tagInline' tag []
+    tagInline' tag = tagged "" tag
+    tagBlock tag = tagBlock' tag []
+    tagBlock' tag = tagged "\n" tag
+    tagged end tag attrs t =
       Text.concat
-        [ "<" <> Text.unwords (tag : map (\(attr, v) -> attr <> "='" <> v <> "'") attrs) <> ">"
+        [ "<" <> tag <> (if null attrs then "" else " " <> showAttrs attrs) <> ">"
         , t
         , "</" <> tag <> ">"
+        , end
         ]
+
+    showAttrs attrs = Text.unwords [attr <> "='" <> v <> "'" | (attr, v) <- attrs]
 
     escape =
       Text.replace "\"" "&quot;"
@@ -288,7 +308,9 @@ toNodes = \case
       (CMarkGFM.EMPH, children) -> NodeEmph $ go children
       (CMarkGFM.STRONG, children) -> NodeStrong $ go children
       (CMarkGFM.LINK url title, children) -> NodeLink url title $ go children
-      (CMarkGFM.IMAGE url title, children) -> NodeImage url title $ go children
+      (CMarkGFM.IMAGE url title, children)
+        | Just alt <- getImageAlt children ->
+            NodeImage url title alt
       (CMarkGFM.STRIKETHROUGH, children) -> NodeStrikethrough $ go children
       (CMarkGFM.TABLE alignments, headerRow : rows)
         | Just headNodes <- getTableRow headerRow
@@ -301,6 +323,10 @@ toNodes = \case
     getItem = \case
       CMarkGFM.Node pos CMarkGFM.ITEM item -> Just (WithPos pos item)
       _ -> Nothing
+    getImageAlt = \case
+      [] -> Just ""
+      [CMarkGFM.Node _ (CMarkGFM.TEXT t) []] -> Just t
+      _ -> Nothing
     getTableRow = \case
       CMarkGFM.Node pos CMarkGFM.TABLE_ROW row
         | Just nodes <- mapM getTableCell row ->
@@ -311,7 +337,7 @@ toNodes = \case
       _ -> Nothing
 
     unexpected nodeType children =
-      error . unlines $
+      errorWithoutStackTrace . unlines $
         [ "Unexpected cmark-gfm result."
         , "This is probably a bug, please report an issue at https://github.com/brandonchinn178/cmark-gfm-simple."
         , show nodeType
@@ -349,7 +375,10 @@ fromNodes (WithPos pos0 nodes0) = CMarkGFM.Node pos0 CMarkGFM.DOCUMENT $ foldNod
       NodeEmph nodes -> (CMarkGFM.EMPH, nodes)
       NodeStrong nodes -> (CMarkGFM.STRONG, nodes)
       NodeLink url title nodes -> (CMarkGFM.LINK url title, nodes)
-      NodeImage url title nodes -> (CMarkGFM.IMAGE url title, nodes)
+      NodeImage url title alt ->
+        ( CMarkGFM.IMAGE url title
+        , [ CMarkGFM.Node Nothing (CMarkGFM.TEXT alt) [] | not (Text.null alt) ]
+        )
       NodeStrikethrough nodes -> (CMarkGFM.STRIKETHROUGH, nodes)
       NodeTable alignments headNodes rowNodes ->
         ( CMarkGFM.TABLE alignments

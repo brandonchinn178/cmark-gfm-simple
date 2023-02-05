@@ -1,0 +1,29 @@
+================= Input =================
+An image:
+![](icon.svg)
+
+========= cmark-gfm-simple HTML =========
+<p>An image:
+<img src='icon.svg' alt='' /></p>
+
+
+============ cmark-gfm HTML =============
+<p>An image:
+<img src="icon.svg" alt="" /></p>
+
+
+======= cmark-gfm-simple Markdown =======
+An image:
+![](icon.svg)
+
+
+========== cmark-gfm Markdown ===========
+An image:
+![](icon.svg)
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 13}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 13}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 9}), unPos = NodeText "An image:"},WithPos {getPosInfo = Nothing, unPos = NodeSoftBreak},WithPos {getPosInfo = Just (PosInfo {startLine = 2, startColumn = 1, endLine = 2, endColumn = 13}), unPos = NodeImage "icon.svg" "" ""}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 13})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 13})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 9})) (TEXT "An image:") [],Node Nothing SOFTBREAK [],Node (Just (PosInfo {startLine = 2, startColumn = 1, endLine = 2, endColumn = 13})) (IMAGE "icon.svg" "") []]]

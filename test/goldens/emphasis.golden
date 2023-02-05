@@ -1,0 +1,24 @@
+================= Input =================
+Some *emphasized* content
+
+========= cmark-gfm-simple HTML =========
+<p>Some <em>emphasized</em> content</p>
+
+
+============ cmark-gfm HTML =============
+<p>Some <em>emphasized</em> content</p>
+
+
+======= cmark-gfm-simple Markdown =======
+Some *emphasized* content
+
+
+========== cmark-gfm Markdown ===========
+Some *emphasized* content
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 25}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 25}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5}), unPos = NodeText "Some "},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 17}), unPos = NodeEmph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 7, endLine = 1, endColumn = 16}), unPos = NodeText "emphasized"}]})},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 18, endLine = 1, endColumn = 25}), unPos = NodeText " content"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 25})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 25})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5})) (TEXT "Some ") [],Node (Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 17})) EMPH [Node (Just (PosInfo {startLine = 1, startColumn = 7, endLine = 1, endColumn = 16})) (TEXT "emphasized") []],Node (Just (PosInfo {startLine = 1, startColumn = 18, endLine = 1, endColumn = 25})) (TEXT " content") []]]

@@ -1,0 +1,32 @@
+================= Input =================
+> a
+> b
+
+========= cmark-gfm-simple HTML =========
+<blockquote><p>a
+b</p>
+</blockquote>
+
+
+============ cmark-gfm HTML =============
+<blockquote>
+<p>a
+b</p>
+</blockquote>
+
+
+======= cmark-gfm-simple Markdown =======
+> a
+> b
+
+
+========== cmark-gfm Markdown ===========
+> a
+> b
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 3}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 3}), unPos = NodeBlockQuote (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 3, endLine = 2, endColumn = 3}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 3, endLine = 1, endColumn = 3}), unPos = NodeText "a"},WithPos {getPosInfo = Nothing, unPos = NodeSoftBreak},WithPos {getPosInfo = Just (PosInfo {startLine = 2, startColumn = 3, endLine = 2, endColumn = 3}), unPos = NodeText "b"}]})}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 3})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 3})) BLOCK_QUOTE [Node (Just (PosInfo {startLine = 1, startColumn = 3, endLine = 2, endColumn = 3})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 3, endLine = 1, endColumn = 3})) (TEXT "a") [],Node Nothing SOFTBREAK [],Node (Just (PosInfo {startLine = 2, startColumn = 3, endLine = 2, endColumn = 3})) (TEXT "b") []]]]

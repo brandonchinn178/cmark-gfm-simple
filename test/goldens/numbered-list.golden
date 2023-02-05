@@ -1,0 +1,40 @@
+================= Input =================
+1. item 1
+1. item 2
+1. item 3
+
+========= cmark-gfm-simple HTML =========
+<ol><li><p>item 1</p>
+</li>
+<li><p>item 2</p>
+</li>
+<li><p>item 3</p>
+</li>
+</ol>
+
+
+============ cmark-gfm HTML =============
+<ol>
+<li>item 1</li>
+<li>item 2</li>
+<li>item 3</li>
+</ol>
+
+
+======= cmark-gfm-simple Markdown =======
+1.  item 1
+2.  item 2
+3.  item 3
+
+
+========== cmark-gfm Markdown ===========
+1.  item 1
+2.  item 2
+3.  item 3
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 9}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 9}), unPos = NodeList (ListAttributes {listType = ORDERED_LIST, listTight = True, listStart = 1, listDelim = PERIOD_DELIM}) [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 9}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 4, endLine = 1, endColumn = 9}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 4, endLine = 1, endColumn = 9}), unPos = NodeText "item 1"}]})}]}},WithPos {getPosInfo = Just (PosInfo {startLine = 2, startColumn = 1, endLine = 2, endColumn = 9}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 2, startColumn = 4, endLine = 2, endColumn = 9}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 2, startColumn = 4, endLine = 2, endColumn = 9}), unPos = NodeText "item 2"}]})}]}},WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 9}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 4, endLine = 3, endColumn = 9}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 4, endLine = 3, endColumn = 9}), unPos = NodeText "item 3"}]})}]}}]}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 9})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 9})) (LIST (ListAttributes {listType = ORDERED_LIST, listTight = True, listStart = 1, listDelim = PERIOD_DELIM})) [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 9})) ITEM [Node (Just (PosInfo {startLine = 1, startColumn = 4, endLine = 1, endColumn = 9})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 4, endLine = 1, endColumn = 9})) (TEXT "item 1") []]],Node (Just (PosInfo {startLine = 2, startColumn = 1, endLine = 2, endColumn = 9})) ITEM [Node (Just (PosInfo {startLine = 2, startColumn = 4, endLine = 2, endColumn = 9})) PARAGRAPH [Node (Just (PosInfo {startLine = 2, startColumn = 4, endLine = 2, endColumn = 9})) (TEXT "item 2") []]],Node (Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 9})) ITEM [Node (Just (PosInfo {startLine = 3, startColumn = 4, endLine = 3, endColumn = 9})) PARAGRAPH [Node (Just (PosInfo {startLine = 3, startColumn = 4, endLine = 3, endColumn = 9})) (TEXT "item 3") []]]]]

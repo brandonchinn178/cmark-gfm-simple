@@ -1,0 +1,27 @@
+================= Input =================
+```
+log file
+```
+
+========= cmark-gfm-simple HTML =========
+<pre><code>log file
+</code></pre>
+
+============ cmark-gfm HTML =============
+<pre><code>log file
+</code></pre>
+
+
+======= cmark-gfm-simple Markdown =======
+    log file
+
+
+========== cmark-gfm Markdown ===========
+    log file
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3}), unPos = NodeCodeBlock "" "log file\n"}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 3})) (CODE_BLOCK "" "log file\n") []]

@@ -1,0 +1,24 @@
+================= Input =================
+Some [linked](https://google.com) content
+
+========= cmark-gfm-simple HTML =========
+<p>Some <a href='https://google.com'>linked</a> content</p>
+
+
+============ cmark-gfm HTML =============
+<p>Some <a href="https://google.com">linked</a> content</p>
+
+
+======= cmark-gfm-simple Markdown =======
+Some [linked](https://google.com) content
+
+
+========== cmark-gfm Markdown ===========
+Some [linked](https://google.com) content
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 41}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 41}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5}), unPos = NodeText "Some "},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 33}), unPos = NodeLink "https://google.com" "" (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 7, endLine = 1, endColumn = 12}), unPos = NodeText "linked"}]})},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 34, endLine = 1, endColumn = 41}), unPos = NodeText " content"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 41})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 41})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5})) (TEXT "Some ") [],Node (Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 33})) (LINK "https://google.com" "") [Node (Just (PosInfo {startLine = 1, startColumn = 7, endLine = 1, endColumn = 12})) (TEXT "linked") []],Node (Just (PosInfo {startLine = 1, startColumn = 34, endLine = 1, endColumn = 41})) (TEXT " content") []]]

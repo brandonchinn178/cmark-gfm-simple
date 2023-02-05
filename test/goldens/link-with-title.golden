@@ -1,0 +1,24 @@
+================= Input =================
+Some [linked](https://example.com 'Example site') content
+
+========= cmark-gfm-simple HTML =========
+<p>Some <a href='https://example.com' title='Example site'>linked</a> content</p>
+
+
+============ cmark-gfm HTML =============
+<p>Some <a href="https://example.com" title="Example site">linked</a> content</p>
+
+
+======= cmark-gfm-simple Markdown =======
+Some [linked](https://example.com "Example site") content
+
+
+========== cmark-gfm Markdown ===========
+Some [linked](https://example.com "Example site") content
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 57}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 57}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5}), unPos = NodeText "Some "},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 49}), unPos = NodeLink "https://example.com" "Example site" (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 7, endLine = 1, endColumn = 12}), unPos = NodeText "linked"}]})},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 50, endLine = 1, endColumn = 57}), unPos = NodeText " content"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 57})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 57})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5})) (TEXT "Some ") [],Node (Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 49})) (LINK "https://example.com" "Example site") [Node (Just (PosInfo {startLine = 1, startColumn = 7, endLine = 1, endColumn = 12})) (TEXT "linked") []],Node (Just (PosInfo {startLine = 1, startColumn = 50, endLine = 1, endColumn = 57})) (TEXT " content") []]]

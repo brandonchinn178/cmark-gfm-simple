@@ -1,0 +1,46 @@
+================= Input =================
+<details>
+<summary>Click for details</summary>
+
+```
+stuff
+```
+</details>
+
+========= cmark-gfm-simple HTML =========
+<details>
+<summary>Click for details</summary>
+<pre><code>stuff
+</code></pre></details>
+
+
+============ cmark-gfm HTML =============
+<!-- raw HTML omitted -->
+<pre><code>stuff
+</code></pre>
+<!-- raw HTML omitted -->
+
+
+======= cmark-gfm-simple Markdown =======
+<details>
+<summary>Click for details</summary>
+
+    stuff
+
+</details>
+
+
+========== cmark-gfm Markdown ===========
+<details>
+<summary>Click for details</summary>
+
+    stuff
+
+</details>
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 7, endColumn = 10}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 36}), unPos = NodeHtmlBlock "<details>\n<summary>Click for details</summary>\n"},WithPos {getPosInfo = Just (PosInfo {startLine = 4, startColumn = 1, endLine = 6, endColumn = 3}), unPos = NodeCodeBlock "" "stuff\n"},WithPos {getPosInfo = Just (PosInfo {startLine = 7, startColumn = 1, endLine = 7, endColumn = 10}), unPos = NodeHtmlBlock "</details>\n"}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 7, endColumn = 10})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 2, endColumn = 36})) (HTML_BLOCK "<details>\n<summary>Click for details</summary>\n") [],Node (Just (PosInfo {startLine = 4, startColumn = 1, endLine = 6, endColumn = 3})) (CODE_BLOCK "" "stuff\n") [],Node (Just (PosInfo {startLine = 7, startColumn = 1, endLine = 7, endColumn = 10})) (HTML_BLOCK "</details>\n") []]

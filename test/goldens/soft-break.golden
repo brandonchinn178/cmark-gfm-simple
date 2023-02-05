@@ -1,0 +1,34 @@
+================= Input =================
+a
+b
+c
+
+========= cmark-gfm-simple HTML =========
+<p>a
+b
+c</p>
+
+
+============ cmark-gfm HTML =============
+<p>a
+b
+c</p>
+
+
+======= cmark-gfm-simple Markdown =======
+a
+b
+c
+
+
+========== cmark-gfm Markdown ===========
+a
+b
+c
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 1}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 1}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 1}), unPos = NodeText "a"},WithPos {getPosInfo = Nothing, unPos = NodeSoftBreak},WithPos {getPosInfo = Just (PosInfo {startLine = 2, startColumn = 1, endLine = 2, endColumn = 1}), unPos = NodeText "b"},WithPos {getPosInfo = Nothing, unPos = NodeSoftBreak},WithPos {getPosInfo = Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 1}), unPos = NodeText "c"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 1})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 3, endColumn = 1})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 1})) (TEXT "a") [],Node Nothing SOFTBREAK [],Node (Just (PosInfo {startLine = 2, startColumn = 1, endLine = 2, endColumn = 1})) (TEXT "b") [],Node Nothing SOFTBREAK [],Node (Just (PosInfo {startLine = 3, startColumn = 1, endLine = 3, endColumn = 1})) (TEXT "c") []]]

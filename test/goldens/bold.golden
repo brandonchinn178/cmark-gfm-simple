@@ -1,0 +1,24 @@
+================= Input =================
+Some **bold** content
+
+========= cmark-gfm-simple HTML =========
+<p>Some <strong>bold</strong> content</p>
+
+
+============ cmark-gfm HTML =============
+<p>Some <strong>bold</strong> content</p>
+
+
+======= cmark-gfm-simple Markdown =======
+Some **bold** content
+
+
+========== cmark-gfm Markdown ===========
+Some **bold** content
+
+
+========== cmark-gfm-simple AST =========
+WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 21}), unPos = Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 21}), unPos = NodeParagraph (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5}), unPos = NodeText "Some "},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 13}), unPos = NodeStrong (Nodes {unNodes = [WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 8, endLine = 1, endColumn = 11}), unPos = NodeText "bold"}]})},WithPos {getPosInfo = Just (PosInfo {startLine = 1, startColumn = 14, endLine = 1, endColumn = 21}), unPos = NodeText " content"}]})}]}}
+
+============= cmark-gfm AST =============
+Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 21})) DOCUMENT [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 21})) PARAGRAPH [Node (Just (PosInfo {startLine = 1, startColumn = 1, endLine = 1, endColumn = 5})) (TEXT "Some ") [],Node (Just (PosInfo {startLine = 1, startColumn = 6, endLine = 1, endColumn = 13})) STRONG [Node (Just (PosInfo {startLine = 1, startColumn = 8, endLine = 1, endColumn = 11})) (TEXT "bold") []],Node (Just (PosInfo {startLine = 1, startColumn = 14, endLine = 1, endColumn = 21})) (TEXT " content") []]]
